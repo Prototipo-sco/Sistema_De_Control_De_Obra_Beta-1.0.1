@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2e9ed2</color>
+    <color name="colorPrimaryDark">#2e9ed2</color>
+    <color name="colorAccent">#ff2937</color>
+    <color name="colorChido">#234b86</color>
+    <color name="colorBlanco">#2e9ed2</color>
+    <color name="colorNegro">#000000</color>
+    <color name="iron">#b3b2b2</color>
+    <color name="colorPrimaryButton">#2e9ed2</color>
+    <color name="colorPrimaryDarkButton">#2e9ed2</color>
+    <color name="sinfondo">#7dfffefe</color>
+    <color name="White">#ffffff</color>
+
+</resources>

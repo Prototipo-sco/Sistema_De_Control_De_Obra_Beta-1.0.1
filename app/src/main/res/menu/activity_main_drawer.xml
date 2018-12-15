@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@android:drawable/btn_star_big_off"
+            android:title="Inicio" />
+
+        <item android:title="Fotografias">
+
+            <menu>
+                <item
+                    android:id="@+id/nav_registro"
+                    android:icon="@android:drawable/ic_menu_camera"
+                    android:title="Crear Nueva Galeria" />
+
+                <item
+                    android:id="@+id/nav_registro_imagenes"
+                    android:icon="@android:drawable/ic_menu_camera"
+                    android:title="Cargar Fotografias a la Galeria" />
+
+                <item
+                    android:id="@+id/nav_consulta_Url"
+                    android:icon="@android:drawable/ic_menu_edit"
+                    android:title="Estatus Fotografia" />
+
+                <item
+                    android:id="@+id/nav_consulta_gral_img_url"
+                    android:icon="@android:drawable/ic_menu_gallery"
+                    android:title="Galeria" />
+
+            </menu>
+
+        </item>
+
+
+        <item android:title="Streaming">
+            <menu>
+                <item
+                    android:id="@+id/nav_streaming"
+                    android:icon="@android:drawable/ic_menu_slideshow"
+                    android:title="Streaming (Proximamente)" />
+            </menu>
+        </item>
+
+    </group>
+
+    <item android:title="Opciones">
+        <menu>
+            <item
+                android:id="@+id/nav_cerrar_sesion"
+                android:icon="@android:drawable/ic_menu_revert"
+                android:title="Cerrar Sesion" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@drawable/index"
+    tools:context="com.ic.sexto.sco.fragments.LoginActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="178dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="35dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="234dp"
+            android:layout_height="136dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/scodios" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="471dp"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingTop="10dp"
+        android:paddingRight="24dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="78dp">
+
+        <EditText
+                android:id="@+id/etusuario"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="35dp"
+                android:background="@color/sinfondo"
+                android:hint="Usuario"
+                android:textColor="@color/colorChido"
+                android:textColorHint="@color/iron"
+                android:textColorLink="@color/colorChido" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etpass"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/sinfondo"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@color/colorChido"
+                android:textColorHint="@color/iron"
+                android:textColorLink="@color/colorChido" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etpass"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/degradado"
+            android:textColor="@color/White"
+            android:onClick="INICIANDO SESION"
+            android:text="INICIAR SESION" />
+
+        <Button
+            android:id="@+id/btn_registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etpass"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/degradado"
+            android:onClick="..."
+            android:text="No Tienes Cuenta? Registrate Ahora."
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/txt_olvidar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="Olvidaste tu Cuenta?"
+            android:textColor="@color/colorChido"
+            android:textSize="16dip" />
+
+    </LinearLayout>
+
+</LinearLayout>
