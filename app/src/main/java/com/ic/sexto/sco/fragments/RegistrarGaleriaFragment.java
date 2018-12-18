@@ -39,11 +39,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.ic.sexto.sco.entidades.Usuario;
 import com.ic.sexto.sco.entidades.VolleySingleton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +60,7 @@ import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static co.ic.sexto.sco.R.id.campo_Usuario;
 
-public class RegistrarGaleriaFragment extends Fragment{
+public class RegistrarGaleriaFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -88,6 +95,9 @@ public class RegistrarGaleriaFragment extends Fragment{
     JsonObjectRequest jsonObjectRequest;
 
     StringRequest stringRequest;
+    ProgressDialog dialog;
+    ArrayList<Usuario> listaUsuarios;
+
 
     public RegistrarGaleriaFragment() {
         // Required empty public constructor
@@ -136,13 +146,14 @@ public class RegistrarGaleriaFragment extends Fragment{
 
         layoutRegistrar = (RelativeLayout) vista.findViewById(R.id.idLayoutRegistrar);
 
-        String[] datos = new String[] {"reyes", "Java", "Python", "R", "Go"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, datos);
-        campoUsuario.setAdapter(adapter);
 
-        String[] datos1 = new String[] {"1", "2", "3", "4", "5"};
+        String[] datos1 = new String[]{"1", "2", "3", "4", "5"};
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, datos1);
         campoContratos.setAdapter(adapter1);
+
+        listaUsuarios = new ArrayList<>();
+        cargarWebService2();
+
 
         //Permisos
         if (solicitaPermisosVersionesSuperiores()) {
@@ -404,8 +415,6 @@ public class RegistrarGaleriaFragment extends Fragment{
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                String usuario = "reyes";
-                String contrato = "2";
                 String titulo = campoTitulo.getText().toString();
                 String descripcion = campoDescripcion.getText().toString();
 
@@ -460,6 +469,63 @@ public class RegistrarGaleriaFragment extends Fragment{
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void cargarWebService2() {
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Cargando...");
+        dialog.show();
+
+        String url = "http://192.168.0.20/web/proyecto/inicio/json_Imagenes/wsJSONConsultarID_Usuario.php";
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+        // request.add(jsonObjectRequest);
+        VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Usuario usuario = null;
+
+        JSONArray json = response.optJSONArray("usuario");
+
+        try {
+
+            for (int i = 0; i < json.length(); i++) {
+                usuario = new Usuario();
+                JSONObject jsonObject = null;
+                jsonObject = json.getJSONObject(i);
+
+                usuario.setUsuarios_id_usuarios(jsonObject.optString("id_usuario"));
+
+
+                listaUsuarios.add(usuario);
+            }
+
+            dialog.hide();
+            ArrayAdapter<String> adapter1 = null;
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+
+                 adapter1 = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, Collections.singletonList(listaUsuarios.get(i).getUsuarios_id_usuarios()));
+
+                //Toast.makeText(getContext(), datos1[0] + " " + response, Toast.LENGTH_LONG).show();
+
+            }
+            campoUsuario.setAdapter(adapter1);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "No se ha podido establecer conexión con el servidor" +
+                    " " + response, Toast.LENGTH_LONG).show();
+            dialog.hide();
+        }
     }
 
 
